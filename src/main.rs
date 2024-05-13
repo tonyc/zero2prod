@@ -1,24 +1,7 @@
 use actix_web::{web, App, HttpRequest, HttpServer, Responder, Result};
-use serde::Serialize;
 
-#[derive(Serialize)]
-struct HealthCheckStatus {
-    status: String,
-}
-
-impl HealthCheckStatus {
-    fn new() -> Self {
-        Self {
-            status: "ok".to_string(),
-        }
-    }
-}
-
-impl Default for HealthCheckStatus {
-    fn default() -> Self {
-        HealthCheckStatus::new()
-    }
-}
+mod health_check;
+use health_check::HealthCheckStatus;
 
 async fn health_check(_req: HttpRequest) -> Result<impl Responder> {
     let status = HealthCheckStatus::new();
