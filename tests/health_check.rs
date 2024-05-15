@@ -12,6 +12,10 @@ async fn health_check_succeeds() {
 
 
     assert!(response.status().is_success());
+    let text = response.text().await.expect("no response text");
+
+    println!("**** response.text: {text:?}");
+
     assert_eq!(Some(19), response.content_length());
 }
 
