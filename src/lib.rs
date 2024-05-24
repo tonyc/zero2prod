@@ -1,10 +1,13 @@
+use std::net::TcpListener;
+
 use actix_web::{web, App, HttpRequest, HttpServer, Responder, Result};
 use actix_web::dev::Server;
 
 mod health_check;
 use health_check::HealthCheck;
 
-pub fn run() -> Result<Server, std::io::Error> {
+
+pub fn run(listener: TcpListener) -> Result<Server, std::io::Error> {
     println!("Starting HTTP server on port 8080");
 
     let server = HttpServer::new(|| {
@@ -13,7 +16,7 @@ pub fn run() -> Result<Server, std::io::Error> {
             .route("/health", web::get().to(health_check))
             .route("/{name}", web::get().to(greet))
     })
-    .bind("127.0.0.1:8000")?
+    .listen(listener)?
     .run();
 
     Ok(server)

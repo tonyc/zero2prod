@@ -12,9 +12,3 @@ impl HealthCheck {
         }
     }
 }
-
-impl Default for HealthCheck {
-    fn default() -> Self {
-        HealthCheck::new()
-    }
-}
