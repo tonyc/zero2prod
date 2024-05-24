@@ -15,11 +15,11 @@ async fn health_check_succeeds() {
 
     assert!(response.status().is_success());
 
-    let text = response.bytes().await.unwrap();
-    println!("*** Text: {:?}", text);
+    let bytes = response.bytes().await.unwrap();
+    println!("*** Text: {bytes:?}");
 
-    let json: Value = serde_json::from_slice(&text).expect("looking for a json response");
-    println!("*** JSON: {:#?}", json);
+    let json: Value = serde_json::from_slice(&bytes).expect("looking for a json response");
+    println!("*** JSON: {json:#?}");
 }
 
 
