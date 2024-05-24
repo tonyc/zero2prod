@@ -1,11 +1,11 @@
 use serde::Serialize;
 
 #[derive(Serialize)]
-pub struct HealthCheckStatus {
+pub struct HealthCheck {
     pub status: String,
 }
 
-impl HealthCheckStatus {
+impl HealthCheck {
     pub fn new() -> Self {
         Self {
             status: "ok".to_string(),
@@ -13,8 +13,8 @@ impl HealthCheckStatus {
     }
 }
 
-impl Default for HealthCheckStatus {
+impl Default for HealthCheck {
     fn default() -> Self {
-        HealthCheckStatus::new()
+        HealthCheck::new()
     }
 }

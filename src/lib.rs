@@ -2,7 +2,7 @@ use actix_web::{web, App, HttpRequest, HttpServer, Responder, Result};
 use actix_web::dev::Server;
 
 mod health_check;
-use health_check::HealthCheckStatus;
+use health_check::HealthCheck;
 
 pub fn run() -> Result<Server, std::io::Error> {
     println!("Starting HTTP server on port 8080");
@@ -19,8 +19,8 @@ pub fn run() -> Result<Server, std::io::Error> {
     Ok(server)
 }
 
-pub async fn health_check(_req: HttpRequest) -> Result<web::Json<HealthCheckStatus>> {
-    let status = HealthCheckStatus::new();
+pub async fn health_check(_req: HttpRequest) -> Result<web::Json<HealthCheck>> {
+    let status = HealthCheck::new();
 
     Ok(web::Json(status))
 }
