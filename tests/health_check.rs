@@ -39,8 +39,6 @@ async fn health_check_json() {
     assert!(response.status().is_success());
 
     let bytes = response.bytes().await.unwrap();
-    println!("*** Text: {bytes:?}");
-
     assert_eq!(15, bytes.len());
 
     // let json: Value = serde_json::from_slice(&bytes).expect("looking for a json response");
